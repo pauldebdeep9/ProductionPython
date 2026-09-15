@@ -1,0 +1,12 @@
+line-length = 100
+target-version = "py311"
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "BLE", "RUF", "ASYNC"]
+
+[lint.per-file-ignores]
+# These scripts deliberately demonstrate anti-patterns before fixing them.
+"07_partial_failure.py" = ["BLE001"]   # the swallow anti-pattern, shown on purpose
+"10_test_failure_handling.py" = ["BLE001", "SIM105"]
+"02_retry_mechanics.py" = ["SIM105"]
+"05_circuit_breakers.py" = ["SIM105", "BLE001"]  # breakers count ALL failures by design

@@ -1,0 +1,16 @@
+line-length = 100
+target-version = "py312"
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "BLE", "RUF", "ASYNC", "S"]
+# `S` is flake8-bandit — it flags hardcoded passwords, subprocess use, and
+# assert statements. In a secrets tutorial it is exactly the right rule family
+# to have on, and the per-file ignores below are all deliberate.
+
+[lint.per-file-ignores]
+# The FAKE_* constants ARE hardcoded secrets — that is their purpose.
+"config_lab.py" = ["S105", "S106", "S107"]
+"04_secrets.py" = ["S105", "S106", "S107", "S603", "S607", "BLE001"]
+"09_test_config.py" = ["S105", "S106", "S101"]
+"08_capstone.py" = ["S105", "S106"]
+"03_fail_fast.py" = ["BLE001"]

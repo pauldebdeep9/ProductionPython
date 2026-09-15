@@ -1,0 +1,21 @@
+# Ruff configuration for the async tutorial.
+line-length = 100  # prose-heavy comment blocks; 88 fights the explanatory style
+target-version = "py311"
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "BLE", "RUF", "ASYNC"]
+# ASYNC is the rule family worth adopting in any async repo: it flags blocking
+# calls inside coroutines (open(), time.sleep, subprocess) — script 03's whole
+# argument, enforced automatically in CI.
+
+[lint.per-file-ignores]
+# These scripts deliberately show anti-patterns before fixing them, and show
+# explicit try/except where contextlib.suppress would hide the mechanism being
+# taught. Suppressions are scoped per-file rather than blanket-disabled.
+"05_timeouts_cancellation.py" = ["SIM105"]  # explicit except shows WHAT is caught
+"06_retries_backoff.py" = ["SIM105", "BLE001"]  # breakers count all failures
+"03_blocking_calls.py" = ["SIM105", "SIM117"]
+"07_streaming.py" = ["B007", "BLE001"]  # draining a stream discards the token
+"08_pipeline_queue.py" = ["SIM105"]
+"09_pitfalls.py" = ["BLE001", "RUF006", "ASYNC", "SIM105"]  # the bugs ARE the content
+"11_test_async_patterns.py" = ["BLE001"]

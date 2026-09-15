@@ -1,0 +1,19 @@
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+enable_error_code = [
+    "redundant-expr",
+    "possibly-undefined",
+    "truthy-bool",
+    "ignore-without-code",
+    "unused-awaitable",
+]
+
+# The broken/ directory contains deliberately-broken files that 07 runs mypy
+# on as a subprocess. Excluded so they do not fail the package-wide check.
+exclude = ["broken/"]
+
+[[tool.mypy.overrides]]
+module = ["pytest"]
+ignore_missing_imports = true

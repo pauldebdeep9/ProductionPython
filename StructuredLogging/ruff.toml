@@ -1,0 +1,10 @@
+line-length = 100
+target-version = "py312"
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "C4", "BLE", "RUF", "ASYNC"]
+
+[lint.per-file-ignores]
+"obs_lab.py" = ["BLE001"]              # the scanner must never crash a caller
+"04_what_to_record.py" = ["E501"]
+"09_test_observability.py" = ["S101"]
