@@ -1,0 +1,23 @@
+.git
+.gitignore
+.vscode/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.DS_Store
+
+# The runtime image serves only the capstone application.
+01_config_secrets.py
+02_validation_typing.py
+03_async_concurrency.py
+04_failures_retries.py
+05_observability.py
+06_testing_patterns.py
+07_service_api.py
+test_core.py
